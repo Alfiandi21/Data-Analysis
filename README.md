@@ -1,14 +1,9 @@
-# Data-Analysis
-#Dashboard
+# Dashboard
+This is a dashboard visualizing the air quality at Shinyu station.
 
-This is a simple dashboard visualizing the air quality from 2013-2017 at Nongzhanguan station.
-
-#Step to Run Dashboard
-
+# Step to Run Dashboard
 packages: pip install -r requirements.txt
-
 Run the dashboard with: streamlit run dashboard.py
 
-#URL
-
+# URL
 proyekakhir-askasalsabila.streamlit.app 

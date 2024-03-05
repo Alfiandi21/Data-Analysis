@@ -10,7 +10,7 @@ sns.set(style='dark')
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Load dataset
-data = pd.read_csv("all_data.csv")
+all_df_shunyi = pd.read_csv("all_data.csv")
 
 # Title of the dashboard
 st.title('Air Quality Analysis Dashboard: Shunyi Station')

@@ -19,6 +19,7 @@ st.title('Air Quality Analysis Dashboard: Shunyi Station')
 st.write("**This dashboard contains air quality and variables that affect air quality at Shunyi Station.**")
 
 # Histogram
+st.subheader('Data distribution')
 fig, axes = plt.subplots(nrows=1, ncols=len(all_df_shunyi.columns), figsize=(15, 4))
 for i, column in enumerate(all_df_shunyi.columns):
     axes[i].hist(all_df_shunyi[column])
@@ -30,11 +31,11 @@ st.subheader('Correlation Heatmap of Air Quality Indicators')
 corr = all_df_shunyi[['PM2.5', 'PM10', 'NO2', 'SO2', 'CO', 'O3', 'TEMP', 'PRES', 'DEWP', 'RAIN', 'WSPM']].corr()
 fig, ax = plt.subplots(figsize=(15,10))
 sns.heatmap(corr, annot=True, ax=ax)
-plt.title('Correlation Heatmap')
 st.pyplot(fig)
 
 
 # PM2.5 Trendline from month to month
+st.subheader('Trendline of PM2.5 from Month to Month')
 all_df_shunyi['year_month'] = all_df_shunyi['year'].astype(str) + '-' + all_df_shunyi['month'].astype(str).str.zfill(2)
 pm25_monthly = all_df_shunyi.groupby('year_month')['PM2.5'].mean().reset_index()
 
@@ -43,7 +44,6 @@ fig, ax = plt.subplots(figsize=(12,6))
 sns.lineplot(data=pm25_monthly, x='year_month', y='PM2.5', marker='o', color='b')
 plt.xlabel('Year-Month')
 plt.ylabel('Average PM2.5')
-plt.title('Trendline of PM2.5 from Month to Month')
 plt.xticks(rotation=90)
 plt.tight_layout()
 st.pyplot(fig)
@@ -57,15 +57,14 @@ plt.ylabel('CO')
 st.pyplot(fig)
 
 # Comparison of PM2.5 and PM10 from Year to Year
+st.subheader('Comparison of PM2.5 and PM10 from Year to Year')
 pm_yearly = all_df_shunyi.groupby('year')[['PM2.5', 'PM10']].mean()
 
 pm_yearly.plot(marker='o')
 plt.xlabel('Year')
 plt.ylabel('Average Concentration')
-plt.title('Comparison of PM2.5 and PM10 from Year to Year')
 plt.xticks(pm_yearly.index)
 plt.grid(True)
 plt.legend(title='Pollutant', loc='upper left')
 plt.tight_layout()
 st.pyplot(fig)
-
